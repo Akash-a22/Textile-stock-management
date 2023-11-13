@@ -1,6 +1,5 @@
 package com.tyss.textilemanagement.TestileStockManagement.service;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,14 +49,24 @@ public class UserService {
 		structure.setStatusCode(HttpStatus.OK.value());
 		return new ResponseEntity<ResponseStructure<User>>(structure, HttpStatus.OK);
 	}
-	
+
 	public ResponseEntity<ResponseStructure<List<User>>> getAllUser() {
-		ResponseStructure<List<User>> structure=new ResponseStructure<>();;
+		ResponseStructure<List<User>> structure = new ResponseStructure<>();
+		;
 		List<User> user = dao.getAllUser();
 		structure.setData(user);
 		structure.setMessage("found");
 		structure.setStatusCode(HttpStatus.OK.value());
 		return new ResponseEntity<ResponseStructure<List<User>>>(structure, HttpStatus.OK);
+	}
+
+	public ResponseEntity<ResponseStructure<User>> userLogin(String email, String password) {
+		User user = dao.userLogin(email, password);
+		structure.setData(user);
+		structure.setMessage("login");
+		structure.setStatusCode(HttpStatus.OK.value());
+		return new ResponseEntity<ResponseStructure<User>>(structure, HttpStatus.OK);
+
 	}
 
 }

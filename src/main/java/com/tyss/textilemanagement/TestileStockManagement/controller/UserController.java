@@ -47,4 +47,10 @@ public class UserController {
 		return service.getAllUser();		
 	}
 
+	@GetMapping("/login")
+	public ResponseEntity<ResponseStructure<User>> userLogin(String email,String password) {
+		return service.userLogin(email,password);		
+	}
+	
+
 }

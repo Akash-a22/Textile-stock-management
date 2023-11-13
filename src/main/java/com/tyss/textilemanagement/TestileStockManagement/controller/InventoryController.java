@@ -45,5 +45,7 @@ public class InventoryController {
 	public ResponseEntity<ResponseStructure<Inventory>> findInventoryById(@RequestParam int id) {
 		return service.findInventoryById(id);
 	}
+	
+	
 
 }
