@@ -27,7 +27,7 @@ public class ProductController {
 		return service.saveProduct(product);
 	}
 
-	@GetMapping("/getProduct")
+	@GetMapping("/getProductById")
 	public ResponseEntity<ResponseStructure<Product>> getProductById(@RequestParam int id) {
 		ResponseEntity<ResponseStructure<Product>> opt = service.getProductById(id);
 		return opt;
