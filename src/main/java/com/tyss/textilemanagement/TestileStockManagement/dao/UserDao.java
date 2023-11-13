@@ -44,7 +44,7 @@ public class UserDao {
 	}
 
 	public User updateUser(User user) {
-		User dbUser = repository.findByEmail(user.getEmail());
+		Optional<User> dbUser = repository.findById(user.getId());
 		if (dbUser != null) {
 			repository.save(user);
 			return user;
@@ -54,7 +54,7 @@ public class UserDao {
 
 	public boolean removeUser(int id) {
 		Optional<User> dbUser = repository.findById(id);
-		if (dbUser != null) {
+		if (dbUser.isPresent()) {
 			repository.delete(dbUser.get());
 			return true;
 		}
@@ -63,20 +63,18 @@ public class UserDao {
 
 	public User getUserById(int id) {
 		Optional<User> dbUser = repository.findById(id);
-		if (dbUser != null) {
+		if (dbUser.isPresent()) {
 			return dbUser.get();
 		}
 		throw new UserNotFoundException();
 	}
-	
+
 	public List<User> getAllUser() {
-		List<User> list=repository.findAll();
-		if (list!= null  && !list.isEmpty()) {
+		List<User> list = repository.findAll();
+		if (list != null && !list.isEmpty()) {
 			return list;
 		}
 		throw new UserNotFoundException();
 	}
-	
-	
 
 }

@@ -28,8 +28,8 @@ public class UserService {
 	}
 
 	public ResponseEntity<ResponseStructure<User>> updateUser(User user) {
-		User dbUser = dao.saveUser(user);
-		structure.setData(user);
+		User dbUser = dao.updateUser(user);
+		structure.setData(dbUser);
 		structure.setMessage("updated");
 		structure.setStatusCode(HttpStatus.OK.value());
 		return new ResponseEntity<ResponseStructure<User>>(structure, HttpStatus.OK);
@@ -46,7 +46,7 @@ public class UserService {
 	public ResponseEntity<ResponseStructure<User>> getUserById(int id) {
 		User user = dao.getUserById(id);
 		structure.setData(user);
-		structure.setMessage("updated");
+		structure.setMessage("found");
 		structure.setStatusCode(HttpStatus.OK.value());
 		return new ResponseEntity<ResponseStructure<User>>(structure, HttpStatus.OK);
 	}
@@ -55,7 +55,7 @@ public class UserService {
 		ResponseStructure<List<User>> structure=new ResponseStructure<>();;
 		List<User> user = dao.getAllUser();
 		structure.setData(user);
-		structure.setMessage("updated");
+		structure.setMessage("found");
 		structure.setStatusCode(HttpStatus.OK.value());
 		return new ResponseEntity<ResponseStructure<List<User>>>(structure, HttpStatus.OK);
 	}
