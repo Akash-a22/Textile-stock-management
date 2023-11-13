@@ -77,4 +77,12 @@ public class UserDao {
 		throw new UserNotFoundException();
 	}
 
+	public User userLogin(String email, String password) {
+		User user=repository.findByEmail(email);
+		if(user != null) {
+			return user;
+		}
+		throw new UserNotFoundException();
+	}
+
 }
