@@ -2,6 +2,7 @@ package com.tyss.textilemanagement.TestileStockManagement.dto;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,9 +25,11 @@ public class Inventory {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String name;
+	private long capacity;
 	@OneToOne
 	private Address address;
 	@OneToOne(mappedBy = "inventory")
+	@JsonIgnore
 	private User user;
 	@OneToMany(mappedBy = "inventory")
 	private List<Product> products;

@@ -37,4 +37,11 @@ public class UserExceptionHandler extends ResponseEntityExceptionHandler {
 		structure.setStatusCode(HttpStatus.NO_CONTENT.value());
 		return new ResponseEntity<ResponseStructure<String>>(structure, HttpStatus.NO_CONTENT);
 	}
+	@ExceptionHandler(NoDataFoundException.class)
+	public ResponseEntity<ResponseStructure<String>> email(NoDataFoundException exist) {
+		structure.setData(null);
+		structure.setMessage(exist.getMessage());
+		structure.setStatusCode(HttpStatus.NO_CONTENT.value());
+		return new ResponseEntity<ResponseStructure<String>>(structure, HttpStatus.NO_CONTENT);
+	}
 }
