@@ -9,6 +9,7 @@ import com.tyss.textilemanagement.TestileStockManagement.dto.Product;
 @Component
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 	
-	Product findByName(String name);
+	
+	Product findByProductType(String type);
 
 }
