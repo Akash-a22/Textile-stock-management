@@ -1,5 +1,6 @@
 package com.tyss.textilemanagement.TestileStockManagement.dao;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class ProductDao {
 
 	}
 
-	public Product getProduct(int id) {
+	public Product getProductById(int id) {
 		Optional<Product> dbProduct = repository.findById(id);
 
 		if (dbProduct != null) {
@@ -52,6 +53,15 @@ public class ProductDao {
 			return true;
 		}
 
+		throw new ProductWithGivenDetailsNotFoundException();
+	}
+
+	public List<Product> getAllProducts() {
+		List<Product> list= repository.findAll();
+		
+		if(!list.isEmpty() && list != null) {
+			return list;
+		}
 		throw new ProductWithGivenDetailsNotFoundException();
 	}
 

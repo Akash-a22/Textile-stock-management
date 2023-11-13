@@ -1,5 +1,6 @@
 package com.tyss.textilemanagement.TestileStockManagement.controller;
 
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tyss.textilemanagement.TestileStockManagement.dto.Product;
@@ -25,26 +27,29 @@ public class ProductController {
 		return service.saveProduct(product);
 	}
 
-	@GetMapping("/getProduct/{id}")
-	public ResponseEntity<ResponseStructure<Product>> getProduct(@PathVariable int id) {
-		ResponseEntity<ResponseStructure<Product>> opt = service.getProduct(id);
+	@GetMapping("/getProduct")
+	public ResponseEntity<ResponseStructure<Product>> getProductById(@RequestParam int id) {
+		ResponseEntity<ResponseStructure<Product>> opt = service.getProductById(id);
 		return opt;
 
 	}
-	
+
 	@PostMapping("/updateProduct")
-	public ResponseEntity<ResponseStructure<Product>>updateProduct(@RequestBody Product product) {
+	public ResponseEntity<ResponseStructure<Product>> updateProduct(@RequestBody Product product) {
 		return service.updateProduct(product);
 	}
-	
-	@DeleteMapping("/removeProduct/{id}")
-	public ResponseEntity<ResponseStructure<Product>> removeProduct(@PathVariable int id) {
+
+	@DeleteMapping("/removeProduct")
+	public ResponseEntity<ResponseStructure<Product>> removeProduct(@RequestParam int id) {
 		ResponseEntity<ResponseStructure<Product>> opt = service.removeProduct(id);
 		return opt;
 
 	}
 
-	
-	
+	@GetMapping("/getAllProducts")
+	public ResponseEntity<ResponseStructure<List<Product>>> getAllProducts() {
+		return service.getAllProducts();
+
+	}
 
 }
