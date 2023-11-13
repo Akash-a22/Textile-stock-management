@@ -15,12 +15,21 @@ public class ProductExceptionHandler {
 	private ResponseStructure<String> structure;
 
 	@ExceptionHandler(ProductWithGivenNameIsAlreadyExist.class)
-	public ResponseEntity<ResponseStructure<String>> email(ProductWithGivenNameIsAlreadyExist exist) {
+	public ResponseEntity<ResponseStructure<String>> saveProduct(ProductWithGivenNameIsAlreadyExist exist) {
 		structure.setData(null);
 		structure.setMessage(exist.getMessage());
 		structure.setStatusCode(HttpStatus.NO_CONTENT.value());
 		return new ResponseEntity<ResponseStructure<String>>(structure, HttpStatus.NO_CONTENT);
 	}
 
+	@ExceptionHandler(ProductWithGivenDetailsNotFoundException.class)
+	public ResponseEntity<ResponseStructure<String>> getProduct(ProductWithGivenDetailsNotFoundException exist) {
+		structure.setData(null);
+		structure.setMessage(exist.getMessage());
+		structure.setStatusCode(HttpStatus.NO_CONTENT.value());
+		return new ResponseEntity<ResponseStructure<String>>(structure, HttpStatus.NO_CONTENT);
+	}
+
+	
 
 }
