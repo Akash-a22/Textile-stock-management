@@ -1,5 +1,6 @@
 package com.tyss.textilemanagement.TestileStockManagement.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,10 @@ import com.tyss.textilemanagement.TestileStockManagement.entity.ResponseStructur
 public class ProductService {
 	@Autowired
 	private ResponseStructure<Product> structure;
+	
+	@Autowired
+	private ResponseStructure<List<Product>> listStructure;
+	
 	@Autowired
 	private ProductDao dao;
 
@@ -26,9 +31,9 @@ public class ProductService {
 		return new ResponseEntity<ResponseStructure<Product>>(structure, HttpStatus.OK);
 	}
 
-	public ResponseEntity<ResponseStructure<Product>> getProduct(int id) {
+	public ResponseEntity<ResponseStructure<Product>> getProductById(int id) {
 
-		Product dbProduct = dao.getProduct(id);
+		Product dbProduct = dao.getProductById(id);
 		structure.setData(dbProduct);
 		structure.setMessage("Found");
 		structure.setStatusCode(HttpStatus.OK.value());
@@ -50,6 +55,16 @@ public class ProductService {
 		structure.setStatusCode(HttpStatus.OK.value());
 		return new ResponseEntity<ResponseStructure<Product>>(structure, HttpStatus.OK);
 	
+	}
+
+	public ResponseEntity<ResponseStructure<List<Product>>> getAllProducts() {
+		List<Product> dbProduct = dao.getAllProducts();
+		
+		listStructure.setData(dbProduct);
+		listStructure.setMessage("Found");
+		listStructure.setStatusCode(HttpStatus.OK.value());
+		return new ResponseEntity<ResponseStructure<List<Product>>>(listStructure, HttpStatus.OK);
+		
 	}
 
 }
