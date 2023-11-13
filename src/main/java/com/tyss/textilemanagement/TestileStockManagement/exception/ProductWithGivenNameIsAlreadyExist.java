@@ -5,7 +5,7 @@ public class ProductWithGivenNameIsAlreadyExist extends RuntimeException {
 
 	public ProductWithGivenNameIsAlreadyExist() {
 
-		message = "product with given name is already exist";
+		message = "product with given type is already exist";
 	}
 
 	@Override

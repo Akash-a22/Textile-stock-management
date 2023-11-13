@@ -22,11 +22,12 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@Column(unique = true, nullable = true)
-	private String name;
+	private String productType;
+	private String brandName;
 	private String description;
 	private int quantity;
 	@ManyToOne
-	@JoinColumn(name="product_id")
+	@JoinColumn(name="inventory_id")
 	private Inventory inventory;
 
 }

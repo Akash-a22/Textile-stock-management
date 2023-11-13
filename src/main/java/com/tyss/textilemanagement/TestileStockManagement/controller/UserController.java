@@ -16,7 +16,6 @@ import com.tyss.textilemanagement.TestileStockManagement.dto.User;
 import com.tyss.textilemanagement.TestileStockManagement.entity.ResponseStructure;
 import com.tyss.textilemanagement.TestileStockManagement.service.UserService;
 
-
 @RestController
 public class UserController {
 	@Autowired
